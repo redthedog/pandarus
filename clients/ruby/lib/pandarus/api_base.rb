@@ -77,9 +77,9 @@ module Pandarus
         end
       ]
     end
-
+    
     def dot_flatten_hash(hash)
-      Hash[dot_flatten_recur(hash)]
+      Hash[*dot_flatten_recur(hash).flatten]
     end
 
     def dot_flatten_recur(hash)
@@ -87,7 +87,7 @@ module Pandarus
         if v1.is_a?(Hash)
           dot_flatten_recur(v1).map do |k2, v2|
             ["#{k1}.#{k2}", v2]
-          end.flatten(1)
+          end
         else
           [k1, v1]
         end
